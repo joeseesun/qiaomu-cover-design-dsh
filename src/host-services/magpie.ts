@@ -18,4 +18,3 @@ export async function magpieAddress(): Promise<string> {
   } catch { /* default address remains editable */ }
   return MAGPIE_BASE;
 }
-

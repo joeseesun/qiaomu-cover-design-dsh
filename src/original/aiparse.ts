@@ -192,4 +192,3 @@ export function extractJson(text: string): unknown {
   }
   throw new Error('no-json');
 }
-
