@@ -1,0 +1,12 @@
+const p=app.plugins.plugins['qiaomu-cover-design'];p.settings.language='auto';
+const file=await p.createDesign('封面设计示例 '+Date.now(),'editorial',undefined,'让想法\n成为封面');
+const view=app.workspace.getLeavesOfType('qiaomu-cover-design').find(l=>l.view.file?.path===file.path).view;
+view.canvas.setActiveObject(view.canvas.getObjects()[1]);view.renderProperties();view.renderLayers();
+await new Promise(r=>setTimeout(r,150));
+const png=await view.exportPng(false);
+const input=view.contentEl.querySelector('textarea');input.focus();input.setSelectionRange(2,2);input.value='让想法\n成为封面';input.dispatchEvent(new Event('input',{bubbles:true}));
+if(document.activeElement!==input)throw new Error('input focus lost');
+const row=view.contentEl.querySelector('.qc-body');const before=row.style.width;row.style.width='620px';view.fit();
+const narrow={stageWidth:view.stage.clientWidth,sidebarWidth:view.contentEl.querySelector('.qc-sidebar').clientWidth,overflow:row.scrollWidth>row.clientWidth};row.style.width=before;view.fit();
+if(narrow.overflow)throw new Error('narrow overflow');
+return {focus:true,objects:view.canvas.getObjects().length,png:png.path,narrow,canvasWidth:view.design.width,buttons:view.contentEl.querySelectorAll('button svg').length};

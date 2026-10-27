@@ -1,0 +1,16 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node -e "require('canvas').createCanvas(1,1)"
+      - run: npm run check
+      - run: git diff --exit-code -- index.js client.js THIRD_PARTY_NOTICES.md
+      - run: npm pack --dry-run
