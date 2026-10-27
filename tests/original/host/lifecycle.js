@@ -1,0 +1,30 @@
+const p=app.plugins.plugins['qiaomu-cover-design'];if(!p)throw new Error('missing');
+const file=await p.createDesign('Lifecycle '+Date.now(),'minimal',undefined,'从笔记走向创作');
+let leaf=app.workspace.getLeavesOfType('qiaomu-cover-design').find(l=>l.view.file?.path===file.path);let view=leaf.view;
+const baseline=view.canvas.getObjects().length;view.addText();await view.flush();
+view.canvas.setActiveObject(view.canvas.getObjects().at(-1));view.renderProperties();
+const input=view.contentEl.querySelector('textarea');input.value='中文输入测试';input.dispatchEvent(new Event('input',{bubbles:true}));
+if(document.activeElement===input && !input.isConnected)throw new Error('focus lost');
+const img=document.createElement('canvas');img.width=80;img.height=50;img.getContext('2d').fillRect(0,0,80,50);
+const blob=await new Promise(r=>img.toBlob(r));await view.importImage(blob);await view.flush();
+const png=view.png();if(png.width!==960||png.height!==1280)throw new Error('native dimensions');
+await leaf.detach();await p.openDesign(file);
+leaf=app.workspace.getLeavesOfType('qiaomu-cover-design').find(l=>l.view.file?.path===file.path);view=leaf.view;
+if(view.canvas.getObjects().length!==baseline+2)throw new Error('reopen data');
+if(!view.canvas.getObjects().some(o=>o.type.toLowerCase()==='image'))throw new Error('image not restored');
+view.resize(1500,600);await view.flush();if(view.png().width!==1500)throw new Error('resized export');
+// Verify external changes survive a conflicting save and draft survives closing.
+const before=await app.vault.read(file);const external=JSON.parse(before);external.width=1080;await app.vault.modify(file,JSON.stringify(external));
+view.addText();await view.flush();
+if(JSON.parse(await app.vault.read(file)).width!==1080)throw new Error('conflict overwritten');
+const recoveryBefore=p.designs().filter(f=>f.basename.includes('recovery')).length;
+await leaf.detach();await new Promise(r=>setTimeout(r,80));
+if(p.designs().filter(f=>f.basename.includes('recovery')).length!==recoveryBefore+1)throw new Error('no recovered draft');
+// Bad file remains untouched.
+const bad=await app.vault.create('Cover designs/Bad '+Date.now()+'.qcover','broken');await p.openDesign(bad);
+if(await app.vault.read(bad)!=='broken')throw new Error('bad file overwritten');
+const badLeaf=app.workspace.getLeavesOfType('qiaomu-cover-design').find(l=>l.view.file?.path===bad.path);await badLeaf.detach();
+p.settings.language='en';const english=await p.createDesign('English '+Date.now(),'bold',undefined,'Create something worth sharing');
+const enview=app.workspace.getLeavesOfType('qiaomu-cover-design').find(l=>l.view.file?.path===english.path).view;
+if(!enview.contentEl.textContent.includes('Export PNG'))throw new Error('english missing');p.settings.language='auto';
+return {reopen:true,imageRoundtrip:true,dimensions:true,conflictProtected:true,recoveredDraft:true,badFileProtected:true,english:true,file:english.path};

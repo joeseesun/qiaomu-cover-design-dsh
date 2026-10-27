@@ -1,0 +1,2 @@
+import React,{useEffect,useRef,useState} from 'react';
+export function App({api,language,runtime}){const ref=useRef(null);const [error,setError]=useState('');useEffect(()=>{let active=true;const root=ref.current;setError('');void runtime.mount(root,api,language).catch(error=>{if(active)setError(error.message);});return()=>{active=false;runtime.detach(root);};},[api,language,runtime]);return <>{error&&<p role="alert">{error}</p>}<div className="qcover-dsh-mount" ref={ref}/></>;}

@@ -1,0 +1,23 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # Canvas layout tests use real Chinese glyph metrics, never missing-glyph boxes.
+      - name: Install CJK font fallback
+        timeout-minutes: 4
+        run: |
+          sudo apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
+          sudo apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y fonts-noto-cjk fonts-noto-core
+          fc-match sans-serif:lang=zh-cn
+      - run: npm ci
+      - run: node -e "require('canvas').createCanvas(1,1)"
+      - run: npm run check
+      - run: git diff --exit-code -- index.js client.js THIRD_PARTY_NOTICES.md
+      - run: npm pack --dry-run

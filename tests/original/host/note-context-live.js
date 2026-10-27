@@ -1,0 +1,11 @@
+if (app.vault.getName() !== 'qiaomu-cover-note-qa') throw new Error('Use the isolated note QA vault');
+const p=app.plugins.plugins['qiaomu-cover-design'];
+if(!p.ai.ready())throw new Error('No text model configured for live QA');
+const note=await app.vault.create('QCover QA/真实模型正文 '+Date.now()+'.md', '# Reader 更新\n\n本次更新主要解决离线朗读中断后丢失进度的问题。新增暂停位置保存，重开阅读器后能从上次段落继续朗读。其次是 EPUB 导出，可以把正文与阅读笔记保存成电子书。\n\n核心收益是：阅读可以中断，但进度不会丢。不要把“一个小想法，一张好封面”作为副标题，也不要宣称免费或效率提升倍数。');
+const file=await p.createDesign('正文设计实测 '+Date.now(),'folio',note,'Reader 更新','xhs');
+const v=p.activeCover();await v.ask('请基于这篇笔记设计三个封面方向，标题突出最重要的具体更新。');
+const last=v.chat.at(-1);if(last.failed||last.warn?.length)throw new Error(last.text+' '+(last.warn||[]).join('；'));
+const proposals=(last.variants||[]).filter(x=>x.spec);if(!proposals.length)throw new Error('No real model design proposals');
+if(!proposals.some(x=>/朗读|进度|续读|断点|暂停|EPUB/.test([x.spec.title,x.spec.subtitle].join(' '))))throw new Error('Design proposals did not reflect the body');
+await v.chooseVariant(last,proposals[0]);await v.flush();
+return {version:p.manifest.version,sourceChars:v.noteContext.characters,kind:v.noteContext.kind,file:file.path,proposals:proposals.map(x=>({title:x.spec.title,subtitle:x.spec.subtitle})),model:p.settings.ai.model,protocol:p.settings.ai.protocol};
