@@ -11,9 +11,10 @@ jobs:
           cache: npm
       # Canvas layout tests use real Chinese glyph metrics, never missing-glyph boxes.
       - name: Install CJK font fallback
+        timeout-minutes: 4
         run: |
-          sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk fonts-noto-core
+          sudo apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
+          sudo apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y fonts-noto-cjk fonts-noto-core
           fc-match sans-serif:lang=zh-cn
       - run: npm ci
       - run: node -e "require('canvas').createCanvas(1,1)"
