@@ -12,7 +12,7 @@ setEnv({ document: dom.window.document, window: dom.window, isTouchSupported: fa
 const { TEMPLATES, templatesFor } = await import('../../src/original/templates');
 const { CONTRACTS, outsideCapacity, titleUnits } = await import('../../src/original/contracts');
 const { audit } = await import('../../src/original/audit');
-const { layoutPass, textExtent, rectOf } = await import('../../src/original/calm');
+const { layoutPass } = await import('../../src/original/calm');
 const { PLATFORMS } = await import('../../src/original/platforms');
 
 test('every template states its contract, and no contract outlives its template', () => {
@@ -33,7 +33,6 @@ test('gallery templates pass the hard layout rules on every common shape', { ski
     for (const copy of COPY.filter(c => c.id === 'short' || c.id === 'medium' || c.id === 'en')) for (const t of templatesFor(shape)) {
       const r = t.build({ width: p.width, height: p.height, zh: copy.zh, title: copy.title, subtitle: copy.subtitle, ...(copy.badge ? { badge: copy.badge } : {}) });
       layoutPass(r.objects, p.width, p.height);
-      if(t.id === 'riso' && shape === 'square' && copy.id === 'short') console.log('RISO metrics', JSON.stringify(r.objects.slice(0,2).concat(r.objects.filter(o=>o.qcRole==='title')).map(o=>({type:o.type,fill:o.fill,opacity:o.opacity,fontSize:o.fontSize,text:o.text,rect:o.qcRole==='title'?textExtent(o):rectOf(o)}))));
       for (const f of audit({ width: p.width, height: p.height, background: r.background, objects: r.objects, platformId: p.id }).filter(x => x.hard)) bad.push(`${t.id} ${shape}/${copy.id}: ${f.rule} ${f.role} ${f.detail}`);
     }
   }

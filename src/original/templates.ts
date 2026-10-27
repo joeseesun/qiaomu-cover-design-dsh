@@ -1017,7 +1017,8 @@ const STUDIO: Template[] = [
       const echo = echoOf(title, i.title, x0 + off, top + off * 0.6, tw, { fontSize: size, fill: p.accent, fontWeight: 'bold', lineHeight: 1.02, charSpacing: -18, opacity: 0.9 }); echo.set(mul);
       return { background: solid(p.bg), objects: keep<FabricObject>(
         dot(cx, cy, R, p.accent, { opacity: 0.92, ...mul }), rect(cx - R * 1.3, cy - R * 0.2, R * 1.05, R * 1.05, p.ink, { opacity: 0.82, ...mul }),
-        ...dotGrid(cx + R * 0.1, cy + R * 0.25, 9, 7, R * 0.16, R * 0.035, p.ink, 0.55),
+        // Font fallback changes the title height. Keep the blue halftone dots above the blue headline.
+        ...dotGrid(cx + R * 0.1, cy + R * 0.25, 9, 7, R * 0.16, R * 0.035, p.ink, 0.55).filter(mark => side || mark.top + mark.getScaledHeight() <= top - m * 0.2),
         grain(w, h, 0.14, 97),
         meta(`RISO · NO.${digits(i, false)}`, x0, m * 0.9, w * 0.5, Math.max(15, 19 * u), p.ink, { opacity: 0.85 }),
         ...badge(i.badge, x0, m * 0.9 + Math.max(15, 19 * u) * 2.2, p, Math.max(18, 24 * u)),

@@ -37043,7 +37043,7 @@ var STUDIO = [
       return { background: solid(p3.bg), objects: keep(
         dot(cx, cy, R3, p3.accent, { opacity: 0.92, ...mul }),
         rect(cx - R3 * 1.3, cy - R3 * 0.2, R3 * 1.05, R3 * 1.05, p3.ink, { opacity: 0.82, ...mul }),
-        ...dotGrid(cx + R3 * 0.1, cy + R3 * 0.25, 9, 7, R3 * 0.16, R3 * 0.035, p3.ink, 0.55),
+        ...dotGrid(cx + R3 * 0.1, cy + R3 * 0.25, 9, 7, R3 * 0.16, R3 * 0.035, p3.ink, 0.55).filter((mark2) => side2 || mark2.top + mark2.getScaledHeight() <= top - m3 * 0.2),
         grain(w3, h3, 0.14, 97),
         meta(`RISO \xB7 NO.${digits(i3, false)}`, x0, m3 * 0.9, w3 * 0.5, Math.max(15, 19 * u3), p3.ink, { opacity: 0.85 }),
         ...badge(i3.badge, x0, m3 * 0.9 + Math.max(15, 19 * u3) * 2.2, p3, Math.max(18, 24 * u3)),
