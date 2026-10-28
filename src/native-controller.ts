@@ -1,3 +1,4 @@
+import packageInfo from '../package.json' with { type: 'json' };
 import {chooseDirectory} from './native-directory';
 import {importFiles,importSettings} from './native-import';
 import { UpdateNotes } from './original/update-notes';
@@ -29,7 +30,7 @@ import { builtPalette, templateById } from './original/templates';
 import { SerialWriter } from './original/model';
 
 export default class CoverPlugin {
-  manifest={id:"qiaomu-cover-design-dsh",name:"乔木封面",version:"0.1.0",dir:"QiaomuCoverData"};
+  manifest={id:"qiaomu-cover-design-dsh",name:"乔木封面",version:packageInfo.version,dir:"QiaomuCoverData"};
   disposers:Array<()=>void>=[]; commands:any[]=[]; views=new Map<string,any>();
   constructor(public app:any,private api:any){this.ai=new AiService(()=>this.settings.ai,app.secretStorage);}
   loadData(){return this.app.loadData();}saveData(data:any){return this.app.saveData(data);}
