@@ -1,5 +1,7 @@
 # 乔木封面 · DeepSeek Harness
 
+> v0.1.1：DeepSeek Harness **0.2.1-rc.3** 兼容更新。[本次验证范围](docs/RC3-COMPATIBILITY.md)。
+
 [English](README.en.md)
 
 把想法、笔记和图片做成封面。在 DeepSeek Harness 中直接使用乔木封面原版画布、图层、字体、模板、AI 设计面板和导出窗口。
@@ -21,12 +23,12 @@
 
 ## 安装与开始
 
-要求 DeepSeek Harness `0.2.1-rc.3`（`<0.3.0`）、Node.js 22 或更新。
+要求 DeepSeek Harness `0.2.1-rc.3`、Node.js 22 或更新。
 
 从 [Releases](https://github.com/joeseesun/qiaomu-cover-design-dsh/releases) 下载 tgz 和 SHA256SUMS，校验后在插件管理安装，或运行：
 
 ```sh
-dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.0.tgz
+dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.1.tgz
 ```
 
 侧栏打开「乔木封面」，顶部「更多 → 新建封面」，填写标题并选择原版模板。选中文字在右侧调整字体、颜色与排版，点击「导出」保存。窄窗口下用左上角按钮收起 AI 面板即可查看画布。

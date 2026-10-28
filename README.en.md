@@ -1,5 +1,7 @@
 # Qiaomu Cover Design for DeepSeek Harness
 
+> v0.1.1: DeepSeek Harness **0.2.1-rc.3** compatibility update. [Release verification](docs/RC3-COMPATIBILITY.md).
+
 [中文](README.md)
 
 Turn notes, ideas and images into covers using the original Qiaomu canvas, templates, typography, layers, AI design panel and export dialogs.
@@ -25,7 +27,7 @@ Requires Harness `0.2.1-rc.3` (`<0.3.0`) and Node.js 22+.
 Download the tgz and SHA256SUMS from [Releases](https://github.com/joeseesun/qiaomu-cover-design-dsh/releases), verify the checksum and install through Plugin Manager or:
 
 ```sh
-dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.0.tgz
+dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.1.tgz
 ```
 
 Open Qiaomu Cover Design in the sidebar. Choose More → New cover, enter a title and select a template. Edit objects in the inspector, then export. Collapse the left panel to see the canvas on narrow windows.

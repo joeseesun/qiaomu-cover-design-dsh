@@ -7774,6 +7774,93 @@ __export(client_exports, {
 });
 module.exports = __toCommonJS(client_exports);
 
+// package.json
+var package_default = {
+  name: "qiaomu-cover-design-dsh",
+  version: "0.1.1",
+  private: false,
+  type: "module",
+  description: "Qiaomu Cover Design for DeepSeek Harness",
+  license: "MIT",
+  engines: {
+    node: ">=22",
+    dsh: "0.2.1-rc.3"
+  },
+  exports: {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  icon: "./icon.svg",
+  files: [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  scripts: {
+    build: "node scripts/build.mjs",
+    test: "node --import tsx --test tests/*.test.mjs tests/original/*.test.ts",
+    check: "npm test && npm run build && node scripts/check-package.mjs",
+    prepack: "npm run build && node scripts/check-package.mjs"
+  },
+  devDependencies: {
+    esbuild: "0.28.1",
+    react: "18.3.1",
+    "react-dom": "18.3.1",
+    "lucide-react": "1.47.0",
+    tsx: "4.20.6",
+    fabric: "7.4.0",
+    dompurify: "3.4.17",
+    jsdom: "29.1.1",
+    lucide: "1.47.0",
+    turndown: "7.2.2",
+    "turndown-plugin-gfm": "1.0.2",
+    yaml: "2.9.1",
+    "perfect-freehand": "1.2.3"
+  },
+  peerDependencies: {
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3"
+  },
+  peerDependenciesMeta: {
+    "@deepseek-ai/cordis": {
+      optional: true
+    },
+    "@deepseek-ai/dsh-typert-protocol": {
+      optional: true
+    }
+  },
+  repository: {
+    type: "git",
+    url: "https://github.com/joeseesun/qiaomu-cover-design-dsh.git"
+  },
+  keywords: [
+    "dsh-plugin",
+    "deepseek-harness",
+    "qiaomu",
+    "cover-design"
+  ],
+  dsh: {
+    bundle: {
+      patch: "./cordis.patch.yml"
+    },
+    client: {
+      platform: "web",
+      immediately: true,
+      inject: []
+    },
+    meta: {
+      title: "\u4E54\u6728\u5C01\u9762",
+      description: "Qiaomu Cover Design for DeepSeek Harness"
+    }
+  }
+};
+
 // node_modules/lucide/dist/esm/defaultAttributes.mjs
 var defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
@@ -52171,7 +52258,7 @@ var CoverPlugin = class {
   }
   app;
   api;
-  manifest = { id: "qiaomu-cover-design-dsh", name: "\u4E54\u6728\u5C01\u9762", version: "0.1.0", dir: "QiaomuCoverData" };
+  manifest = { id: "qiaomu-cover-design-dsh", name: "\u4E54\u6728\u5C01\u9762", version: package_default.version, dir: "QiaomuCoverData" };
   disposers = [];
   commands = [];
   views = /* @__PURE__ */ new Map();
