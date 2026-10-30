@@ -7777,14 +7777,14 @@ module.exports = __toCommonJS(client_exports);
 // package.json
 var package_default = {
   name: "qiaomu-cover-design-dsh",
-  version: "0.1.1",
+  version: "0.1.2",
   private: false,
   type: "module",
   description: "Qiaomu Cover Design for DeepSeek Harness",
   license: "MIT",
   engines: {
     node: ">=22",
-    dsh: "0.2.1-rc.3"
+    dsh: "0.2.1-rc.3 || 0.2.1-rc.4 || 0.2.1-rc.5"
   },
   exports: {
     ".": "./index.js",
@@ -7825,7 +7825,7 @@ var package_default = {
   },
   peerDependencies: {
     "@deepseek-ai/cordis": "~4.0.5",
-    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3"
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3 || 0.2.1-rc.4 || 0.2.1-rc.5"
   },
   peerDependenciesMeta: {
     "@deepseek-ai/cordis": {

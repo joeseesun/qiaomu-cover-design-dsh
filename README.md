@@ -1,6 +1,6 @@
 # 乔木封面 · DeepSeek Harness
 
-> v0.1.1：DeepSeek Harness **0.2.1-rc.3** 兼容更新。[本次验证范围](docs/RC3-COMPATIBILITY.md)。
+> v0.1.2：DeepSeek Harness **0.2.1-rc.3** 兼容更新。[本次验证范围](docs/RC3-COMPATIBILITY.md)。
 
 [English](README.en.md)
 
@@ -28,7 +28,7 @@
 从 [Releases](https://github.com/joeseesun/qiaomu-cover-design-dsh/releases) 下载 tgz 和 SHA256SUMS，校验后在插件管理安装，或运行：
 
 ```sh
-dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.1.tgz
+dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.2.tgz
 ```
 
 侧栏打开「乔木封面」，顶部「更多 → 新建封面」，填写标题并选择原版模板。选中文字在右侧调整字体、颜色与排版，点击「导出」保存。窄窗口下用左上角按钮收起 AI 面板即可查看画布。
