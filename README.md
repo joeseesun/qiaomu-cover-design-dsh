@@ -58,3 +58,5 @@ npm pack
 测试模板排版需要 `canvas` 原生依赖；CI 会确认该依赖可用，不以跳过测试替代通过。
 
 MIT。原版 [qiaomu-cover-design](https://github.com/joeseesun/qiaomu-cover-design) 冻结基线 `c56bb742eecc0c9f6bbd419c598060aa99d5410f`。原 CSS 保持一致，宿主容器、文件、网络、凭据和生命周期单独适配。依赖及资源许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
+
+本次 Harness rc.5 支持范围与实测边界见 [兼容验证记录](docs/RC5-COMPATIBILITY.md)。

@@ -57,3 +57,5 @@ npm pack
 Template layout tests require the native `canvas` dependency; CI checks that it is available.
 
 MIT. Adapted from [Qiaomu Cover Design](https://github.com/joeseesun/qiaomu-cover-design), commit `c56bb742eecc0c9f6bbd419c598060aa99d5410f`. Original CSS is retained, with separate Harness host boundaries. See [third-party notices](THIRD_PARTY_NOTICES.md).
+
+See the [Harness rc.5 compatibility record](docs/RC5-COMPATIBILITY.md) for tested paths and limitations.
