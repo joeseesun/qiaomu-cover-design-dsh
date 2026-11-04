@@ -1,6 +1,6 @@
 # Qiaomu Cover Design for DeepSeek Harness
 
-> v0.1.3: DeepSeek Harness **0.2.1-rc.3** compatibility update. [Release verification](docs/RC3-COMPATIBILITY.md).
+> v0.1.3: DeepSeek Harness **0.2.2-rc.1** compatibility update. [Release verification](docs/DSH-0.2.2-RC1.md).
 
 [中文](README.md)
 
@@ -23,7 +23,7 @@ Turn notes, ideas and images into covers using the original Qiaomu canvas, templ
 
 ## Install
 
-Requires Harness `0.2.1-rc.3` (`<0.3.0`) and Node.js 22+.
+Requires Harness `0.2.2-rc.1` and Node.js 24.9+.
 Download the tgz and SHA256SUMS from [Releases](https://github.com/joeseesun/qiaomu-cover-design-dsh/releases), verify the checksum and install through Plugin Manager or:
 
 ```sh
@@ -58,6 +58,4 @@ Template layout tests require the native `canvas` dependency; CI checks that it 
 
 MIT. Adapted from [Qiaomu Cover Design](https://github.com/joeseesun/qiaomu-cover-design), commit `c56bb742eecc0c9f6bbd419c598060aa99d5410f`. Original CSS is retained, with separate Harness host boundaries. See [third-party notices](THIRD_PARTY_NOTICES.md).
 
-See the [Harness rc.5 compatibility record](docs/RC5-COMPATIBILITY.md) for tested paths and limitations.
-
-Harness 0.2.2-rc.1 compatibility: [validation and supported scope](docs/DSH-0.2.2-RC1.md).
+See the [Harness 0.2.2-rc.1 compatibility record](docs/DSH-0.2.2-RC1.md) for tested paths and limitations.
