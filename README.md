@@ -1,6 +1,6 @@
 # 乔木封面 · DeepSeek Harness
 
-> v0.1.3：DeepSeek Harness **0.2.2-rc.1** 兼容更新。[本次验证范围](docs/DSH-0.2.2-RC1.md)。
+> v0.1.4：DeepSeek Harness **0.2.2-rc.2** 兼容更新。[本次验证范围](docs/DSH-0.2.2-RC2.md)。
 
 [English](README.en.md)
 
@@ -23,12 +23,12 @@
 
 ## 安装与开始
 
-要求 DeepSeek Harness `0.2.2-rc.1`、Node.js 24.9 或更新。
+要求 DeepSeek Harness `0.2.2-rc.2`、Node.js 24.9 或更新。
 
 从 [Releases](https://github.com/joeseesun/qiaomu-cover-design-dsh/releases) 下载 tgz 和 SHA256SUMS，校验后在插件管理安装，或运行：
 
 ```sh
-dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.3.tgz
+dsh plugin --profile desktop add /absolute/path/qiaomu-cover-design-dsh-0.1.4.tgz
 ```
 
 侧栏打开「乔木封面」，顶部「更多 → 新建封面」，填写标题并选择原版模板。选中文字在右侧调整字体、颜色与排版，点击「导出」保存。窄窗口下用左上角按钮收起 AI 面板即可查看画布。
@@ -59,4 +59,4 @@ npm pack
 
 MIT。原版 [qiaomu-cover-design](https://github.com/joeseesun/qiaomu-cover-design) 冻结基线 `c56bb742eecc0c9f6bbd419c598060aa99d5410f`。原 CSS 保持一致，宿主容器、文件、网络、凭据和生命周期单独适配。依赖及资源许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
 
-Harness 0.2.2-rc.1 适配与实测边界见 [兼容验证记录](docs/DSH-0.2.2-RC1.md)。
+Harness 0.2.2-rc.2 适配与实测边界见 [兼容验证记录](docs/DSH-0.2.2-RC2.md)。
